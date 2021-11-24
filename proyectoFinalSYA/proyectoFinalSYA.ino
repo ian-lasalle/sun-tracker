@@ -89,32 +89,18 @@ void loop() {
   }
   
   delay(3);
-
-//  v = analogRead(A4)*(5.0/1023.0);
-//    i = (v - 2.5 )/sensibilidad;
-// // i = calcularCorriente(500);
-//  Serial.print("v = ");
-//  Serial.println(v);
-//  imprimirResultados();
+  v = analogRead(A4)*(5.0/1023.0);
+  i  = v/(46.12 + 0.88);
+  imprimirResultados();
   delay(300);
 }
 
-float calcularCorriente(int iteraciones){
-  float v = 0.0;
-  float corriente = 0.0;
-  for(int j = 0; j < iteraciones; j++){
-      v = analogRead(A4)*(5.0/1023.0);
-      corriente += (v - 2.5)/sensibilidad;
-  }
-  corriente = corriente/iteraciones; //corriente promedio de n-iteraciones
-  return (corriente); 
-}
 
 void imprimirResultados(){
   delay(1);
   lcd.setCursor(0, 0);
   lcd.print("i = ");
-  lcd.print(i*1000);
+  lcd.print(i);
   lcd.setCursor(14, 0);
   lcd.print("mA");
   
